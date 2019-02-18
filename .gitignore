@@ -60,6 +60,7 @@ local.properties
 .scala_dependencies
 .worksheet
 
+RemoteSystemsTempFiles/
 
 
 # Annotation Processing
