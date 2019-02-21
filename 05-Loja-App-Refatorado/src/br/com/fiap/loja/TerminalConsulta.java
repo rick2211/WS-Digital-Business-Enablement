@@ -44,6 +44,7 @@ public class TerminalConsulta {
 			System.out.print("Sair? S/N ");			
 		} while (sc.next().equals("N"));
 		System.out.println("Obrigado!");
+		log.warn("Encerrado");
 		sc.close();
 	}
 
