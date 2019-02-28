@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://bo.fiap.com.br" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://bo.fiap.com.br" xmlns:intf="http://bo.fiap.com.br" xmlns:tns1="http://to.loja.fiap.com.br" xmlns:tns2="http://exception.loja.fiap.com.br" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://bo.fiap.com.br" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://exception.loja.fiap.com.br"/>
+   <import namespace="http://to.loja.fiap.com.br"/>
+   <element name="consultarProduto">
+    <complexType>
+     <sequence>
+      <element name="codigo" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="consultarProdutoResponse">
+    <complexType>
+     <sequence>
+      <element name="consultarProdutoReturn" type="tns1:ProdutoTO"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="fault" type="tns2:AxisFault"/>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://to.loja.fiap.com.br" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://exception.loja.fiap.com.br"/>
+   <complexType name="ProdutoTO">
+    <sequence>
+     <element name="codigo" type="xsd:int"/>
+     <element name="descricao" nillable="true" type="xsd:string"/>
+     <element name="preco" type="xsd:float"/>
+     <element name="qtd" type="xsd:int"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://exception.loja.fiap.com.br" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://to.loja.fiap.com.br"/>
+   <complexType name="AxisFault">
+    <sequence/>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="consultarProdutoRequest">
+
+      <wsdl:part element="impl:consultarProduto" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="AxisFault">
+
+      <wsdl:part element="impl:fault" name="fault">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="consultarProdutoResponse">
+
+      <wsdl:part element="impl:consultarProdutoResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="EstoqueBO">
+
+      <wsdl:operation name="consultarProduto">
+
+         <wsdl:input message="impl:consultarProdutoRequest" name="consultarProdutoRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:consultarProdutoResponse" name="consultarProdutoResponse">
+
+       </wsdl:output>
+
+         <wsdl:fault message="impl:AxisFault" name="AxisFault">
+
+       </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="EstoqueBOSoapBinding" type="impl:EstoqueBO">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="consultarProduto">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="consultarProdutoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="consultarProdutoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+         <wsdl:fault name="AxisFault">
+
+            <wsdlsoap:fault name="AxisFault" use="literal"/>
+
+         </wsdl:fault>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="EstoqueBOService">
+
+      <wsdl:port binding="impl:EstoqueBOSoapBinding" name="EstoqueBO">
+
+         <wsdlsoap:address location="http://localhost:8080/07-SOAP-Loja/services/EstoqueBO"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

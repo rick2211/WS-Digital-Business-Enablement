@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from EstoqueBOService WSDL service -->
+
+  <service name="EstoqueBO" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://bo.fiap.com.br"/>
+      <parameter name="wsdlServiceElement" value="EstoqueBOService"/>
+      <parameter name="schemaQualified" value="http://to.loja.fiap.com.br,http://bo.fiap.com.br,http://exception.loja.fiap.com.br"/>
+      <parameter name="wsdlServicePort" value="EstoqueBO"/>
+      <parameter name="className" value="br.com.fiap.bo.EstoqueBO"/>
+      <parameter name="wsdlPortType" value="EstoqueBO"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://bo.fiap.com.br" xmlns:retNS="http://bo.fiap.com.br" xmlns:rtns="http://to.loja.fiap.com.br" name="consultarProduto" qname="operNS:consultarProduto" returnQName="retNS:consultarProdutoReturn" returnType="rtns:ProdutoTO" soapAction="">
+        <parameter xmlns:pns="http://bo.fiap.com.br" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:codigo" type="tns:int"/>
+        <fault xmlns:fns="http://bo.fiap.com.br" xmlns:tns="http://exception.loja.fiap.com.br" name="AxisFault" qname="fns:fault" class="br.com.fiap.loja.exception.AxisFault" type="tns:AxisFault"/>
+      </operation>
+      <parameter name="allowedMethods" value="consultarProduto"/>
+
+      <typeMapping xmlns:ns="http://to.loja.fiap.com.br" qname="ns:ProdutoTO" type="java:br.com.fiap.loja.to.ProdutoTO" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://exception.loja.fiap.com.br" qname="ns:AxisFault" type="java:br.com.fiap.loja.exception.AxisFault" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>
