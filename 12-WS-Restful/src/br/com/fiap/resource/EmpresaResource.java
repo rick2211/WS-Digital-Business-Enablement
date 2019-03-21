@@ -35,16 +35,11 @@ public class EmpresaResource {
 	public void delete(@PathParam("id") Integer codigo ) {
 		try {
 			dao.remover(codigo);
-			try {
-				dao.commit();
-			} catch (CommitException e) {
+			dao.commit();
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} catch (CodigoInvalidoException e) {
-			e.printStackTrace();
-
-		}
+				e.printStackTrace();	
+		} 
 
 	}
 
