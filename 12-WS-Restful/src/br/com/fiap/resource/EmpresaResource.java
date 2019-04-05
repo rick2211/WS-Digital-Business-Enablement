@@ -28,66 +28,76 @@ import br.com.fiap.singleton.EntityManagerFactorySingleton;
 public class EmpresaResource {
 
 	private EmpresaDAO dao;
+
 	public EmpresaResource() {
 		dao = new EmpresaDAOImpl(EntityManagerFactorySingleton.getInstance().createEntityManager());
 	}
+
+	// DELETE rest/empresa/1
 	@DELETE
 	@Path("{id}")
-	public void delete(@PathParam("id") Integer codigo ) {
+	public void remover(@PathParam("id") int codigo) {
+
 		try {
 			dao.remover(codigo);
 			dao.commit();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				throw new InternalServerErrorException();
-		} 
-
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new InternalServerErrorException(); //500
+			//return Response.serverError().build();
+		}
+		//return Response.noContent().build(); //204
 	}
 
+	// PUT rest/empresa/1
 	@PUT
-	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("{id}")
-	public Response atualizar(Empresa empresa, @PathParam("id") Integer codigo) {
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response atualizar(Empresa empresa, @PathParam("id") int codigo) {
+
 		try {
 			empresa.setCodigo(codigo);
 			dao.alterar(empresa);
 			dao.commit();
-		}catch(CommitException e) {
+		} catch (CommitException e) {
 			e.printStackTrace();
-			return Response.serverError().build();
+			return Response.serverError().build();// 500
 		}
-		return Response.ok().build();
+
+		return Response.ok().build(); // 20OK
 	}
 
+	// GET rest/empresa/1
 	@GET
 	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Empresa buscar(@PathParam("id") Integer codigo ) {
+	public Empresa busca(@PathParam("id") int codigo) {
 		try {
 			return dao.buscar(codigo);
 		} catch (CodigoInvalidoException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
-		return null;
-
-
 	}
+
+	// http://localhost:8080/12-WS-Restful/rest/empresa/
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response cadastrar(Empresa empresa, @Context UriInfo url) {
+
 		try {
 			dao.cadastrar(empresa);
 			dao.commit();
-		}catch(CommitException e) {
+		} catch (CommitException e) {
 			e.printStackTrace();
-			return Response.serverError().build();
+			return Response.serverError().build(); // 500
 		}
-
+		// Criar a URL para acessar a empresa cadastrada
 		UriBuilder builder = url.getAbsolutePathBuilder();
 		builder.path(String.valueOf(empresa.getCodigo()));
+
+		// HTTP Status Code : 201 Created
 		return Response.created(builder.build()).build();
 	}
 

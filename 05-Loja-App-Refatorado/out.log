@@ -1,4 +1,9 @@
-2019-02-20 20:42:27 INFO  TerminalConsulta:20 - Iniciou a Aplicação
-2019-02-20 20:42:27 DEBUG TerminalConsulta:21 - Build
-2019-02-20 20:42:27 WARN  TerminalConsulta:31 - Vai trouxa
-2019-02-20 20:42:37 ERROR TerminalConsulta:41 - Errou
+2019-02-20 21:21:30 WARN  TerminalConsulta:20 - Inicializando a aplicação
+2019-02-20 21:21:33 WARN  TerminalConsulta:42 - Finalizando a aplicação
+2019-02-20 21:22:32 WARN  TerminalConsulta:20 - Inicializando a aplicação
+2019-02-20 21:22:35 DEBUG EstoqueBO:16 - Código pesquisado: 401
+2019-02-20 21:22:35 WARN  TerminalConsulta:42 - Finalizando a aplicação
+2019-02-20 21:22:40 WARN  TerminalConsulta:20 - Inicializando a aplicação
+2019-02-20 21:22:42 DEBUG EstoqueBO:16 - Código pesquisado: 456
+2019-02-20 21:22:42 ERROR EstoqueBO:29 - Produto não encontrado 456
+2019-02-20 21:22:42 WARN  TerminalConsulta:42 - Finalizando a aplicação

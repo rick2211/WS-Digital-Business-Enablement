@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<head>
+	<title>Login</title>
+</head>
+
+<body>
+	<h1>Entre!</h1>
+
+	<h:form>
+		<div>
+			<h:outputLabel value="Usuário" />
+			<h:inputText value="#{loginBean.usuario}"/>
+		</div>
+		<div>
+			<h:outputLabel value="Senha"/>
+			<h:inputSecret value="#{loginBean.senha}"/>
+		</div>
+		<h:commandButton value="Entrar" 
+			actionListener="#{loginBean.logar()}"/>
+			
+		<h:outputText value="#{loginBean.mensagem}"/>
+	</h:form>	
+
+</body>
+
+</html>
