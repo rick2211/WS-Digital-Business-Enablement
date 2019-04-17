@@ -1,4 +1,4 @@
-activeuserprofiles=L2501MICRO02;Team
+activeuserprofiles=DESKTOP-13RJILC;Team
 eclipse.preferences.version=1
-org.eclipse.rse.systemtype.local.systemType.defaultUserId=logonrmlocal
-useridperkey=L2501MICRO02.Local\=logonrmlocal;
+org.eclipse.rse.systemtype.local.systemType.defaultUserId=Administrator
+useridperkey=DESKTOP-13RJILC.Local\=Administrator;
