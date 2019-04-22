@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Jogo</title>
+</h:head>
+
+<h:body>
+
+	<h2>Cadastro de Jogo</h2>
+	
+	<h:messages/>
+	
+	<h:form>
+		<div>
+			<h:outputLabel value="Nome" for="nome"/>
+			<h:inputText value="#{jogoBean.jogo.nome}" id="nome"/>
+		</div>
+		<div>
+			<h:outputLabel value="Genero" for="genero"/>
+			<h:selectOneMenu value="#{jogoBean.jogo.genero}" id="genero">
+				<f:selectItem itemLabel="Ação" itemValue="Ação"/>
+				<f:selectItem itemLabel="Esporte" itemValue="Esporte"/>
+				<f:selectItem itemLabel="RPG" itemValue="RPG"/>
+			</h:selectOneMenu>
+		</div>
+		<div>
+			<h:outputLabel value="Plataforma" for="plat"/>
+			<h:selectManyCheckbox value="#{jogoBean.jogo.plataformas}" id="plat">
+				<f:selectItem itemLabel="PS4" itemValue="PS4"/>
+				<f:selectItem itemLabel="PC" itemValue="PC"/>
+				<f:selectItem itemLabel="XBOX" itemValue="XBOX"/>
+			</h:selectManyCheckbox>
+		</div>
+		<div>
+			<h:selectBooleanCheckbox value="#{jogoBean.jogo.demo}" id="demo"/>
+			<h:outputLabel value="Demo" for="demo"/>
+		</div>
+		<div>
+			<h:outputLabel value="Jogadores" for="jogo"/>
+			<h:inputText value="#{jogoBean.jogo.jogadores}" id="jogo"/>
+		</div>
+		<div>
+			<h:outputLabel value="Preço" for="preco"/>
+			<h:inputText value="#{jogoBean.jogo.preco}" id="preco"/>
+		</div>
+		<h:commandButton value="Cadastrar"
+					actionListener="#{jogoBean.cadastrar()}"/>
+	</h:form>
+	
+	<h2>Jogos</h2>
+	
+	<h:dataTable value="#{jogoBean.listar()}" var="j">
+		<h:column>
+			<f:facet name="header">Nome</f:facet>
+			#{j.nome}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Genero</f:facet>
+			#{j.genero}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Plataforma</f:facet>
+			#{j.plataformas}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Demo</f:facet>
+			#{j.demo}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Jogadores</f:facet>
+			#{j.jogadores}
+		</h:column>
+		<h:column>
+			<f:facet name="header">Preço</f:facet>
+			#{j.preco}
+		</h:column>
+	</h:dataTable>
+	
+	
+</h:body>
+
+</html>
+
+
+
+
+
+
